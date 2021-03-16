@@ -1,13 +1,21 @@
+import { Grid } from '@material-ui/core';
 import './App.css';
-import { AppBar, Toolbar, Typography } from '@material-ui/core';
-import { useStyles } from './config/utils/useStyles';
+import FeatureCards from './components/FeatureCards';
+import Hero from './components/Hero';
 import Nav from './components/Nav';
 
 function App() {
-  const classes = useStyles();
   return (
-    <div className="App">
-      <Nav />
+    <div>
+      <Grid container><Nav />
+        </Grid>
+      <Grid container>
+      <Hero />
+      
+      </Grid>
+      <Grid container>
+      <FeatureCards />
+      </Grid>
     </div>
   );
 }
