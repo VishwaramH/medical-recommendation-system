@@ -1,5 +1,12 @@
-import { Button, Card, CardContent, Grid, makeStyles, Typography } from '@material-ui/core'
-import React from 'react';
+import {
+  Button,
+  Card,
+  CardContent,
+  Grid,
+  makeStyles,
+  Typography,
+} from "@material-ui/core";
+import React from "react";
 
 const useStyles = makeStyles({
   hero: {
@@ -8,7 +15,7 @@ const useStyles = makeStyles({
     width: "100%",
     position: "fixed",
     backgroundPosition: "center",
-    backgroundSize: "cover"
+    backgroundSize: "cover",
   },
   heading: {
     color: "black",
@@ -16,27 +23,31 @@ const useStyles = makeStyles({
     flexDirection: "column",
     justifyContent: "center",
     alignItems: "center",
-    fontWeight: 500
+    fontWeight: 500,
   },
   button: {
- backgroundColor: "#1977CC",
+    backgroundColor: "#1977CC",
     borderRadius: 9,
     color: "white",
-      boxShadow: "none",
+    boxShadow: "none",
     "&:hover": {
       backgroundColor: "#1977CC",
-      boxShadow: "none"
-    }
-  }
-})
+      boxShadow: "none",
+    },
+  },
+});
 
 function Hero() {
   const classes = useStyles();
   return (
     <Grid container className={classes.hero}>
       <Grid item xs={12} md={7} className={classes.heading}>
-        <Typography variant="h3">We are a team of talented doctors who help in protecting lives</Typography>
-        <Button className={classes.button} variant="contained" >Get started</Button>
+        <Typography variant="h3">
+          We are a team of talented doctors who help in protecting lives
+        </Typography>
+        <Button className={classes.button} variant="contained">
+          Get started
+        </Button>
       </Grid>
     </Grid>
   );
