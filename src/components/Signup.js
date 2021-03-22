@@ -36,10 +36,14 @@ const useStyles = makeStyles((theme) => ({
 export default function SignUp() {
   const classes = useStyles();
   const [firstName, setFirstname] = useState("");
-  const [lastName, setLastname] = useState("");
+  const [age, setAge] = useState(null);
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [receive, setReceive] = useState(false);
+
+  const handleSubmit = () => {
+    return <h1>Success</h1>;
+  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -50,7 +54,7 @@ export default function SignUp() {
         <Typography component="h1" variant="h5">
           Sign up
         </Typography>
-        <form className={classes.form} noValidate>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -59,9 +63,9 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="firstName"
                 label="First Name"
                 autoFocus
+                onChange={(e) => setFirstname(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -69,10 +73,10 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="lastName"
-                label="Last Name"
-                name="lastName"
-                autoComplete="lname"
+                label="Age"
+                name="age"
+                autoComplete="age"
+                onChange={(e) => setAge(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -80,10 +84,10 @@ export default function SignUp() {
                 variant="outlined"
                 required
                 fullWidth
-                id="email"
                 label="Email Address"
                 name="email"
                 autoComplete="email"
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -94,13 +98,19 @@ export default function SignUp() {
                 name="password"
                 label="Password"
                 type="password"
-                id="password"
                 autoComplete="current-password"
+                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={<Checkbox value="allowExtraEmails" color="primary" />}
+                control={
+                  <Checkbox
+                    value="allowExtraEmails"
+                    color="primary"
+                    onChange={(e) => setReceive(e.target.value)}
+                  />
+                }
                 label="I want to receive notifications from this app via email"
               />
             </Grid>
