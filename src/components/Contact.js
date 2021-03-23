@@ -35,67 +35,16 @@ const useStyles = makeStyles((theme) => ({
     margin: theme.spacing(3, 0, 2),
   },
 }));
-
-export default function SignUp() {
+function Contact() {
   const classes = useStyles();
-  const [fullName, setFullName] = useState("");
-  const [age, setAge] = useState(0);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  const [receive, setReceive] = useState(false);
-  const [signedUp, setSignedUp] = useState(false);
-
-  const [errors, setErrors] = useState({
-    email: ""
-  })
-
-  useEffect(() => {
-    console.log(errors);
-  }, [errors]);
-  const handleSubmit = (event) => {
-    event.preventDefault();
-
-    const registeredUser = {
-      fullName,
-      age,
-      email,
-      password,
-      receive,
-    };
-
-    axios
-      .post("http://localhost:8000/app/signup", registeredUser)
-      .then((response) => {
-        if(response.data.error) setErrors({email: response.data.error});
-        else if(response.data.success){
-           alert(response.data.success);
-    setFullName("");
-    setAge("");
-    setEmail("");
-    setPassword("");
-    setReceive(false);
-    signedUp = true;
-        }
-      })
-      .catch((error) => {
-        
-        console.log(errors)
-      });
-      console.log(signedUp);
-if(signedUp) 
-    return <UserLogin />
-  };
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
       <div className={classes.paper}>
-        <Avatar className={classes.avatar}>
-          <LockOutlinedIcon />
-        </Avatar>
         <Typography component="h1" variant="h5">
-          Sign up
+          Fill out your query to get feedback
         </Typography>
-        <form className={classes.form} onSubmit={handleSubmit}>
+        <form className={classes.form}>
           <Grid container spacing={2}>
             <Grid item xs={12} sm={6}>
               <TextField
@@ -106,8 +55,6 @@ if(signedUp)
                 fullWidth
                 label="Full Name"
                 autoFocus
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
               />
             </Grid>
             <Grid item xs={12} sm={6}>
@@ -119,8 +66,6 @@ if(signedUp)
                 label="Age"
                 name="age"
                 autoComplete="age"
-                value={age}
-                onChange={(e) => setAge(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -131,11 +76,7 @@ if(signedUp)
                 label="Email Address"
                 type="email"
                 name="email"
-                errors={Boolean(errors?.email)}
-                helperText={errors?.email}
                 autoComplete="email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
@@ -147,17 +88,13 @@ if(signedUp)
                 name="password"
                 label="Password"
                 autoComplete="current-password"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
                 control={
                   <Checkbox
-                    value={receive}
                     color="primary"
-                    onChange={(e) => setReceive(!receive)}
                   />
                 }
                 label="I want to receive notifications from this app via email"
@@ -183,5 +120,7 @@ if(signedUp)
         </form>
       </div>
     </Container>
-  );
+  )
 }
+
+export default Contact

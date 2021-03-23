@@ -6,6 +6,7 @@ import Home from "./Home";
 import Nav from "./Nav";
 import SignUp from "./Signup";
 import UserLogin from "./UserLogin";
+import Contact from "./Contact";
 
 function Main() {
   return (
@@ -15,6 +16,7 @@ function Main() {
       <Route path="/signup" component={() => <SignUp />} />
       <Route path="/signin" component={() => <UserLogin />} />
       <Route path="/admin" component={() => <AdminLogin />} />
+      <Route path="/contact" component={() => <Contact />} />
     </div>
   );
 }
