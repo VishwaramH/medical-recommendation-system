@@ -7,7 +7,7 @@ import {
   Typography,
 } from "@material-ui/core";
 import { makeStyles } from "@material-ui/styles";
-import { Link } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 
 const useStyles = makeStyles({
   navbar: {
@@ -61,29 +61,29 @@ function Nav() {
         <li className={classes.navHead} variant="h6">
           Medical Recommendation
         </li>
-        <Link className={classes.link} to="/home">
+        <NavLink className={classes.link} to="/home">
           <li>Home</li>
-        </Link>
-        <Link className={classes.link} to="/services">
+        </NavLink>
+        <NavLink className={classes.link} to="/services">
           <li>Services</li>
-        </Link>
-        <Link className={classes.link} to="/departments">
+        </NavLink>
+        <NavLink className={classes.link} to="/departments">
           <li>Departments</li>
-        </Link>
-        <Link className={classes.link} to="/contact">
+        </NavLink>
+        <NavLink className={classes.link} to="/contact">
           <li>Contact</li>
-        </Link>
-        <Link className={classes.link} to="/signup">
+        </NavLink>
+        <NavLink className={classes.link} to="/signup">
           <li>User</li>
-        </Link>
-        <Link className={classes.link} to="/admin">
+        </NavLink>
+        <NavLink className={classes.link} to="/admin">
           <li>Admin</li>
-        </Link>
-        <Link className={classes.buttonlink} to="/appointment">
+        </NavLink>
+        <NavLink className={classes.buttonlink} to="/appointment">
           <Button className={classes.button} variant="contained">
             Make an Appointment
           </Button>
-        </Link>
+        </NavLink>
       </ul>
     </nav>
   );

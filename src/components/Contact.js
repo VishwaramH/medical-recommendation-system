@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Avatar from "@material-ui/core/Avatar";
 import Button from "@material-ui/core/Button";
-import CssBaseline from "@material-ui/core/CssBaseline"; 
+import CssBaseline from "@material-ui/core/CssBaseline";
 import TextField from "@material-ui/core/TextField";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Checkbox from "@material-ui/core/Checkbox";
@@ -13,8 +13,8 @@ import Typography from "@material-ui/core/Typography";
 import { makeStyles } from "@material-ui/core/styles";
 import Container from "@material-ui/core/Container";
 import axios from "axios";
-import {Redirect} from 'react-router-dom';
-import UserLogin from "./UserLogin"
+import { Redirect } from "react-router-dom";
+import UserLogin from "./UserLogin";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -36,6 +36,9 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 function Contact() {
+  useEffect(() => {
+    console.log("Sign in");
+  }, []);
   const classes = useStyles();
   return (
     <Container component="main" maxWidth="xs">
@@ -92,11 +95,7 @@ function Contact() {
             </Grid>
             <Grid item xs={12}>
               <FormControlLabel
-                control={
-                  <Checkbox
-                    color="primary"
-                  />
-                }
+                control={<Checkbox color="primary" />}
                 label="I want to receive notifications from this app via email"
               />
             </Grid>
@@ -108,7 +107,7 @@ function Contact() {
             color="primary"
             className={classes.submit}
           >
-            Sign Up
+            Send
           </Button>
           <Grid container justify="flex-end">
             <Grid item>
@@ -120,7 +119,7 @@ function Contact() {
         </form>
       </div>
     </Container>
-  )
+  );
 }
 
-export default Contact
+export default Contact;
