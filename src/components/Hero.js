@@ -16,13 +16,14 @@ const useStyles = makeStyles({
     position: "fixed",
     backgroundPosition: "center",
     backgroundSize: "cover",
+    padding: 30,
   },
   heading: {
     color: "black",
     display: "flex",
     flexDirection: "column",
     justifyContent: "center",
-    alignItems: "center",
+    // alignItems: "center",
     fontWeight: 500,
   },
   button: {
@@ -34,6 +35,8 @@ const useStyles = makeStyles({
       backgroundColor: "#1977CC",
       boxShadow: "none",
     },
+    width: "40%",
+    marginTop: 20,
   },
 });
 
@@ -42,10 +45,11 @@ function Hero() {
   return (
     <Grid container className={classes.hero}>
       <Grid item xs={12} md={7} className={classes.heading}>
+        <Typography variant="h2">Welcome!</Typography>
         <Typography variant="h3">
           We are a team of talented doctors who help in protecting lives
         </Typography>
-        <Button className={classes.button} variant="contained">
+        <Button href="/signup" className={classes.button} variant="contained">
           Get started
         </Button>
       </Grid>

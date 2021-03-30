@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const signupSchema = new mongoose.Schema({
+const userSchema = new mongoose.Schema({
   fullName: {
     type: String,
     required: true,
@@ -12,8 +12,7 @@ const signupSchema = new mongoose.Schema({
   email: {
     type: String,
     required: true,
-    unique: true,
-    message: "Email address already taken"
+    message: "Email address already taken",
   },
   password: {
     type: String,
@@ -21,7 +20,7 @@ const signupSchema = new mongoose.Schema({
   },
   receive: {
     type: Boolean,
-    required: true
+    required: true,
   },
   date: {
     type: Date,
@@ -29,4 +28,4 @@ const signupSchema = new mongoose.Schema({
   },
 });
 
-module.exports = mongoose.model("users", signupSchema);
+module.exports = mongoose.model("users", userSchema);

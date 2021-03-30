@@ -56,12 +56,15 @@ const useStyles = makeStyles((theme) => ({
 
 function UserLogin() {
   const classes = useStyles();
-  // useEffect(() => {
-  //   console.log("Sign in");
-  // }, []);
+  const [signedIn, setSignedIn] = useState(false);
 
   const googleSignIn = () => {
-    auth.signInWithPopup(provider).catch((err) => console.log(err));
+    auth
+      .signInWithPopup(provider)
+      .then((res) => {
+        setSignedIn(true);
+      })
+      .catch((err) => console.log(err));
   };
   return (
     <div component="main" className={classes.container}>
@@ -104,6 +107,7 @@ function UserLogin() {
             <Button
               type="submit"
               fullWidth
+              href={signedIn ? "/contact" : "/signin"}
               variant="contained"
               color="primary"
               className={classes.submit}
@@ -115,6 +119,7 @@ function UserLogin() {
             </Typography>
             <hr />
             <Button
+              // href={signedIn ? "/contact" : "/signin"}
               onClick={googleSignIn}
               variant="contained"
               className={classes.googleColor}

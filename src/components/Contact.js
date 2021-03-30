@@ -15,6 +15,12 @@ import Container from "@material-ui/core/Container";
 import axios from "axios";
 import { Redirect } from "react-router-dom";
 import UserLogin from "./UserLogin";
+import {
+  FormControl,
+  InputLabel,
+  Select,
+  TextareaAutosize,
+} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
   paper: {
@@ -34,12 +40,48 @@ const useStyles = makeStyles((theme) => ({
   submit: {
     margin: theme.spacing(3, 0, 2),
   },
+  textarea: {
+    width: "100%",
+    fontFamily: '"Roboto", "Helvetica", "Arial", sans-serif',
+    padding: 10,
+    borderRadius: 4,
+    "&:focus": {
+      outline: "none",
+      border: "2px solid #3F51B5",
+    },
+  },
+  select: {
+    width: "100%",
+  },
 }));
 function Contact() {
-  useEffect(() => {
-    console.log("Sign in");
-  }, []);
   const classes = useStyles();
+  const [email, setEmail] = useState("");
+  const [category, setCategory] = useState("");
+  const [age, setAge] = useState("");
+  const [query, setQuery] = useState("");
+
+  const queryDetails = {
+    email,
+    category,
+    age,
+    query,
+  };
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    axios
+      .post("http://localhost:8000/app/query", queryDetails)
+      .then((response) => {
+        alert("Email sent to the mail id. Please check");
+
+        setEmail("");
+        setCategory("");
+        setAge("");
+        setQuery("");
+      })
+      .catch(() => alert("Sorry! An error occured!"));
+  };
+
   return (
     <Container component="main" maxWidth="xs">
       <CssBaseline />
@@ -47,20 +89,46 @@ function Contact() {
         <Typography component="h1" variant="h5">
           Fill out your query to get feedback
         </Typography>
-        <form className={classes.form}>
+        <form className={classes.form} onSubmit={handleSubmit}>
           <Grid container spacing={2}>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
               <TextField
-                autoComplete="fullName"
-                name="fullName"
                 variant="outlined"
                 required
+                type="text"
                 fullWidth
-                label="Full Name"
-                autoFocus
+                label="Email"
+                name="email"
+                autoComplete="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
             </Grid>
-            <Grid item xs={12} sm={6}>
+            <Grid item xs={12}>
+              <FormControl className={classes.select}>
+                <InputLabel htmlFor="age-native-simple">
+                  Select the category
+                </InputLabel>
+                <Select
+                  native
+                  inputProps={{
+                    name: "age",
+                    id: "age-native-simple",
+                  }}
+                  onChange={(e) => setCategory(e.target.value)}
+                >
+                  <option value={"None"}>None</option>
+                  <option value={"General"}>General</option>
+                  <option value={"Dermatology"}>Dermatology</option>
+                  <option value={"Neurology"}>Neurology</option>
+                  <option value={"Cardiology"}>Cardiology</option>
+                  <option value={"Oncology"}>Oncology</option>
+                  <option value={"Orthopaedics"}>Orthopaedics</option>
+                  <option value={"Others"}>Others</option>
+                </Select>
+              </FormControl>
+            </Grid>
+            <Grid item xs={12}>
               <TextField
                 variant="outlined"
                 required
@@ -69,34 +137,18 @@ function Contact() {
                 label="Age"
                 name="age"
                 autoComplete="age"
+                query={age}
+                onChange={(e) => setAge(e.target.value)}
               />
             </Grid>
             <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                label="Email Address"
-                type="email"
-                name="email"
-                autoComplete="email"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <TextField
-                variant="outlined"
-                required
-                fullWidth
-                type="password"
-                name="password"
-                label="Password"
-                autoComplete="current-password"
-              />
-            </Grid>
-            <Grid item xs={12}>
-              <FormControlLabel
-                control={<Checkbox color="primary" />}
-                label="I want to receive notifications from this app via email"
+              <TextareaAutosize
+                aria-label="empty textarea"
+                rowsMin={10}
+                placeholder="Write your query here..."
+                className={classes.textarea}
+                value={query}
+                onChange={(e) => setQuery(e.target.value)}
               />
             </Grid>
           </Grid>
@@ -107,7 +159,7 @@ function Contact() {
             color="primary"
             className={classes.submit}
           >
-            Send
+            Send Query
           </Button>
           <Grid container justify="flex-end">
             <Grid item>

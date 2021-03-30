@@ -51,6 +51,10 @@ const useStyles = makeStyles({
   buttonlink: {
     textDecoration: "none",
   },
+  active: {
+    backgroundColor: "blue",
+    color: "white",
+  },
 });
 
 function Nav() {
@@ -61,22 +65,39 @@ function Nav() {
         <li className={classes.navHead} variant="h6">
           Medical Recommendation
         </li>
-        <NavLink className={classes.link} to="/home">
+        <NavLink
+          // activeClassName={classes.active}
+          className={classes.link}
+          to="/"
+        >
           <li>Home</li>
         </NavLink>
-        <NavLink className={classes.link} to="/services">
-          <li>Services</li>
-        </NavLink>
-        <NavLink className={classes.link} to="/departments">
+        <NavLink
+          activeClassName={classes.active}
+          className={classes.link}
+          to="/departments"
+        >
           <li>Departments</li>
         </NavLink>
-        <NavLink className={classes.link} to="/contact">
+        <NavLink
+          activeClassName={classes.active}
+          className={classes.link}
+          to="/contact"
+        >
           <li>Contact</li>
         </NavLink>
-        <NavLink className={classes.link} to="/signup">
+        <NavLink
+          activeClassName={classes.active}
+          className={classes.link}
+          to="/signup"
+        >
           <li>User</li>
         </NavLink>
-        <NavLink className={classes.link} to="/admin">
+        <NavLink
+          activeClassName={classes.active}
+          className={classes.link}
+          to="/admin"
+        >
           <li>Admin</li>
         </NavLink>
         <NavLink className={classes.buttonlink} to="/appointment">
